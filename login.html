@@ -1,151 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Raksha Bandhan Login</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        /* Floating background elements */
-        .float {
-            position: absolute;
-            font-size: 2.5rem;
-            animation: floatAnim 10s infinite linear;
-            opacity: 0.6;
-            user-select: none;
-        }
-        @keyframes floatAnim {
-            0% { transform: translateY(110vh) rotate(0deg); }
-            100% { transform: translateY(-20vh) rotate(360deg); }
-        }
-
-        .login-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            text-align: center;
-            width: 320px;
-            animation: pop 0.5s ease-in-out;
-            z-index: 2;
-        }
-        @keyframes pop {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        h1 {
-            color: #d46b08;
-            font-size: 24px;
-        }
-        input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            outline: none;
-            font-size: 14px;
-        }
-        button {
-            background: #ff7e5f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #eb6750;
-        }
-        .emoji {
-            font-size: 2rem;
-            animation: bounce 1s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        #message {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .credit {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #888;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raksha Bandhan Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .container {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        width: 350px;
+    }
+    h2 {
+        color: #ff4081;
+    }
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #ff4081;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background: #e73370;
+    }
+    .floating {
+        position: absolute;
+        font-size: 2rem;
+        animation: float 6s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh); }
+        100% { transform: translateY(-10vh); }
+    }
+</style>
 </head>
 <body>
 
-<!-- Floating background emojis -->
-<div class="float" style="left:10%;">🪢</div>
-<div class="float" style="left:30%; animation-delay: 2s;">🎁</div>
-<div class="float" style="left:50%; animation-delay: 4s;">💖</div>
-<div class="float" style="left:70%; animation-delay: 6s;">🪢</div>
-<div class="float" style="left:90%; animation-delay: 1s;">🎉</div>
-<div class="float" style="left:20%; animation-delay: 3s;">🌸</div>
-<div class="float" style="left:80%; animation-delay: 5s;">✨</div>
+<!-- Floating emojis -->
+<div class="floating" style="left:10%;">🎁</div>
+<div class="floating" style="left:30%;">💖</div>
+<div class="floating" style="left:50%;">🪢</div>
+<div class="floating" style="left:70%;">🎉</div>
+<div class="floating" style="left:90%;">🥰</div>
 
-<div class="login-box">
-    <div class="emoji">🎁💖🪢</div>
-    <h1>Raksha Bandhan Login</h1>
-    <p>Secret Question: <b>What do I spend most of my time on?</b></p>
-    <input type="text" id="secretCode" placeholder="Enter secret code">
-    <p>Enter Sister's Name:</p>
-    <input type="text" id="sisterName" placeholder="Enter sister's name">
-    <br>
+<div class="container">
+    <h2>Raksha Bandhan Special 💝</h2>
+    <p>Secret code question: <b>What do I spend most of my time on?</b></p>
+    <input type="text" id="code" placeholder="Enter secret code...">
+    <p>Enter your name:</p>
+    <input type="text" id="name" placeholder="Your name...">
     <button onclick="checkLogin()">Login</button>
-    <p id="message"></p>
-    <p class="credit">💻 Made by your jobless coder bhai Jai</p>
+    <p id="message" style="color:red; font-weight:bold;"></p>
 </div>
 
 <script>
-    const validCodes = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
-    const validSisters = [
-        "harshita", "saumya", "runjun", "rushali", "pihu", 
-        "suhana", "krishna", "yashu", "yashika", "purti", "sona", "diksha"
-    ];
-    const specialSisters = ["harshita", "saumya", "runjun"]; // Special teasing list
+const validCodes = ["pc","computer","gaming","laptop","playstation","ps4","ps5"];
+const specialSisters = ["harshita","saumya","runjun","rushali","pihu","suhana","krishna","yashu","yashika","purti"];
 
-    function checkLogin() {
-        const codeInput = document.getElementById("secretCode").value.trim().toLowerCase();
-        const sisterInput = document.getElementById("sisterName").value.trim().toLowerCase();
-        const msg = document.getElementById("message");
+function checkLogin() {
+    let code = document.getElementById("code").value.trim().toLowerCase();
+    let name = document.getElementById("name").value.trim().toLowerCase();
+    let msg = document.getElementById("message");
 
-        if (validCodes.includes(codeInput) && validSisters.includes(sisterInput)) {
-            msg.style.color = "green";
-            msg.textContent = "✅ Access Granted! Happy Raksha Bandhan 🎉";
-            setTimeout(() => {
-                window.location.href = "main.html"; 
-            }, 1500);
-        } 
-        else if (validCodes.includes(codeInput) && !validSisters.includes(sisterInput)) {
-            if (specialSisters.includes(sisterInput)) {
-                msg.style.color = "orange";
-                msg.textContent = "😏 Arre meri special behen ka naam bhi bhool gaya?";
-            } else {
-                msg.style.color = "red";
-                msg.textContent = "❌ Access Denied! Only for special sisters 💕";
-            }
-        } 
-        else {
-            msg.style.color = "red";
-            msg.textContent = "❌ Wrong! Hint: it has a keyboard ⌨️";
-        }
+    if (validCodes.includes(code) && specialSisters.includes(name)) {
+        // ✅ Redirect to main page
+        window.location.href = "main.html?name=" + encodeURIComponent(name);
+    } else {
+        msg.textContent = "Wrong 😜 Yeh bhi nahi pata LOL... it has a keyboard!";
     }
+}
 </script>
 
 </body>
 </html>
+
 
