@@ -74,26 +74,33 @@
     <button onclick="checkLogin()">Login</button>
     <p id="message" style="color:red; font-weight:bold;"></p>
 </div>
-
 <script>
-const validCodes = ["pc","computer","gaming","laptop","playstation","ps4","ps5"];
-const specialSisters = ["harshita","saumya","runjun","rushali","pihu","suhana","krishna","yashu","yashika","purti"];
+    const validCodes = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
+    const validSisters = ["harshita", "saumya", "runjun", "rushali", "pihu", "suhana", "krishna", "yashu", "yashika", "purti", "sona", "diksha"];
+    const specialSisters = ["harshita", "saumya", "runjun"]; // For special teasing
 
-function checkLogin() {
-    let code = document.getElementById("code").value.trim().toLowerCase();
-    let name = document.getElementById("name").value.trim().toLowerCase();
-    let msg = document.getElementById("message");
+    function checkLogin() {
+        const codeInput = document.getElementById("secretCode").value.trim().toLowerCase();
+        const sisterInput = document.getElementById("sisterName").value.trim().toLowerCase();
+        const msg = document.getElementById("message");
 
-    if (validCodes.includes(code) && specialSisters.includes(name)) {
-        // ✅ Redirect to main page
-        window.location.href = "main.html?name=" + encodeURIComponent(name);
-    } else {
-        msg.textContent = "else {
-                msg.style.color = "red";
-                msg.textContent = "❌ Access Denied! Only for special sisters 💕";!";
+        if (validCodes.includes(codeInput) && validSisters.includes(sisterInput)) {
+            msg.style.color = "green";
+            msg.textContent = "✅ Access Granted! Happy Raksha Bandhan 🎉";
+            setTimeout(() => {
+                window.location.href = "main.html"; 
+            }, 1500);
+        } 
+        else if (validCodes.includes(codeInput) && !validSisters.includes(sisterInput)) {
+            msg.style.color = "red";
+            msg.textContent = "❌ Access Denied! Only for special sisters 💔";
+        } 
+        else {
+            msg.style.color = "red";
+            msg.textContent = "❌ Wrong! Yeh bhi nahi pata LOL, it has a keyboard! ⌨️😂";
+            <script>
+        }
     }
-}
-</script>
 
 </body>
 </html>
