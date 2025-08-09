@@ -76,8 +76,11 @@
 </div>
 <script>
     const validCodes = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
-    const validSisters = ["harshita", "saumya", "runjun", "rushali", "pihu", "suhana", "krishna", "yashu", "yashika", "purti", "sona", "diksha"];
-    const specialSisters = ["harshita", "saumya", "runjun"]; // For special teasing
+    const validSisters = [
+        "harshita", "saumya", "runjun", "rushali", "pihu", 
+        "suhana", "krishna", "yashu", "yashika", "purti", "sona", "diksha"
+    ];
+    const specialSisters = ["harshita", "saumya", "runjun"]; // Special teasing list
 
     function checkLogin() {
         const codeInput = document.getElementById("secretCode").value.trim().toLowerCase();
@@ -92,13 +95,20 @@
             }, 1500);
         } 
         else if (validCodes.includes(codeInput) && !validSisters.includes(sisterInput)) {
-            msg.style.color = "red";
-            msg.textContent = "❌ Access Denied! Only for special sisters 💔";
+            if (specialSisters.includes(sisterInput)) {
+                msg.style.color = "orange";
+                msg.textContent = "😏 Arre meri special behen ka naam bhi bhool gaya?";
+            } else {
+                msg.style.color = "red";
+                msg.textContent = "❌ Access Denied! Only for special sisters 💕";
+            }
         } 
         else {
             msg.style.color = "red";
-            msg.textContent = "❌ Wrong! Yeh bhi nahi pata LOL, it has a keyboard! ⌨️😂";
-<script>
+            msg.textContent = "❌ Wrong! Hint: it has a keyboard ⌨️";
+        }
+    }
+</script>
         }
     }
 
