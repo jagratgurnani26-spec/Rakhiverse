@@ -9,28 +9,30 @@
         margin: 0;
         font-family: 'Segoe UI', sans-serif;
         background: linear-gradient(135deg, #ffe0f0, #ffd6a5);
+        background-size: 200% 200%;
+        animation: bgMove 8s infinite alternate ease-in-out;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         overflow: hidden;
-        animation: bgMove 10s infinite alternate ease-in-out;
     }
     @keyframes bgMove {
         0% { background-position: left top; }
         100% { background-position: right bottom; }
     }
     h1 {
-        font-size: 2.5rem;
-        color: #ff4081;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        font-size: 2.7rem;
+        color: #ff2e81;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.25);
         animation: fadeIn 1.5s ease-in-out;
     }
     p {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         margin-bottom: 20px;
-        color: #333;
+        color: #444;
+        text-shadow: 1px 1px 4px rgba(255,255,255,0.6);
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
@@ -38,18 +40,18 @@
     }
     button {
         padding: 12px 25px;
-        background: #ff4081;
+        background: linear-gradient(135deg, #ff4081, #ff7eb3);
         border: none;
         color: white;
         border-radius: 50px;
         font-size: 1.2rem;
         cursor: pointer;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         transition: transform 0.2s ease, background 0.3s ease;
     }
     button:hover {
-        background: #e73370;
-        transform: scale(1.05);
+        transform: scale(1.07);
+        background: linear-gradient(135deg, #e73370, #ff5f98);
     }
     #giftMessage {
         margin-top: 20px;
@@ -58,15 +60,17 @@
         font-weight: bold;
         animation: fadeIn 0.5s ease;
     }
+    /* Floating emojis */
     .floating {
         position: absolute;
-        font-size: 2.2rem;
-        animation: float 10s linear infinite;
-        opacity: 0.8;
+        font-size: 2.5rem;
+        filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2));
+        animation: float 12s linear infinite;
+        opacity: 0.9;
     }
     @keyframes float {
-        0% { transform: translateY(100vh); }
-        100% { transform: translateY(-10vh); }
+        0% { transform: translateY(110vh) rotate(0deg); }
+        100% { transform: translateY(-20vh) rotate(360deg); }
     }
 </style>
 </head>
@@ -102,8 +106,9 @@ const funnyMessages = [
     "Abhi job nahi lagi 😜 wait karo...",
     "Click karo ho sakta hai job mil jae 💖",
     "Gift ka order Amazon se jaa raha hai 🚚",
-    "GIft meh ek hug milegi 😉",
-    " Gift baad mein 😆"
+    "Gift mein ek hug milegi 😉",
+    "Gift baad mein... patience rakho 😆",
+    "Gift ka budget agle mahine se start hoga 😂"
 ];
 
 function claimGift(){
@@ -114,3 +119,4 @@ function claimGift(){
 
 </body>
 </html>
+
