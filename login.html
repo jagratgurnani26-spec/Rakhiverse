@@ -21,14 +21,15 @@
             font-size: 2.5rem;
             animation: floatAnim 10s infinite linear;
             opacity: 0.6;
+            user-select: none;
         }
         @keyframes floatAnim {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-10vh) rotate(360deg); }
+            0% { transform: translateY(110vh) rotate(0deg); }
+            100% { transform: translateY(-20vh) rotate(360deg); }
         }
 
         .login-box {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -93,6 +94,8 @@
 <div class="float" style="left:50%; animation-delay: 4s;">💖</div>
 <div class="float" style="left:70%; animation-delay: 6s;">🪢</div>
 <div class="float" style="left:90%; animation-delay: 1s;">🎉</div>
+<div class="float" style="left:20%; animation-delay: 3s;">🌸</div>
+<div class="float" style="left:80%; animation-delay: 5s;">✨</div>
 
 <div class="login-box">
     <div class="emoji">🎁💖🪢</div>
@@ -109,8 +112,11 @@
 
 <script>
     const validCodes = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
-    const validSisters = ["harshita", "saumya", "runjun", "rushali", "pihu", "suhana", "krishna", "yashu", "yashika", "purti","sona","diksha"];
-    const specialSisters = ["harshita", "saumya", "runjun"]; // For special teasing
+    const validSisters = [
+        "harshita", "saumya", "runjun", "rushali", "pihu", 
+        "suhana", "krishna", "yashu", "yashika", "purti", "sona", "diksha"
+    ];
+    const specialSisters = ["harshita", "saumya", "runjun"]; // Special teasing list
 
     function checkLogin() {
         const codeInput = document.getElementById("secretCode").value.trim().toLowerCase();
@@ -130,15 +136,16 @@
                 msg.textContent = "😏 Arre meri special behen ka naam bhi bhool gaya?";
             } else {
                 msg.style.color = "red";
-                msg.textContent = "❌ Access Denied! Only for special sisters";
+                msg.textContent = "❌ Access Denied! Only for special sisters 💕";
             }
         } 
         else {
             msg.style.color = "red";
-            msg.textContent = "❌ Wrong! Yeh bhi nahi pata LOL, it has a keyboard! ⌨️";
+            msg.textContent = "❌ Wrong! Hint: it has a keyboard ⌨️";
         }
     }
 </script>
 
 </body>
 </html>
+
