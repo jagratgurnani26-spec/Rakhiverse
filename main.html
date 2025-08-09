@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raksha Bandhan Special</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ffe0f0, #ffd6a5);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        animation: bgMove 10s infinite alternate ease-in-out;
+    }
+    @keyframes bgMove {
+        0% { background-position: left top; }
+        100% { background-position: right bottom; }
+    }
+    h1 {
+        font-size: 2.5rem;
+        color: #ff4081;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        animation: fadeIn 1.5s ease-in-out;
+    }
+    p {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    button {
+        padding: 12px 25px;
+        background: #ff4081;
+        border: none;
+        color: white;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease, background 0.3s ease;
+    }
+    button:hover {
+        background: #e73370;
+        transform: scale(1.05);
+    }
+    #giftMessage {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #555;
+        font-weight: bold;
+        animation: fadeIn 0.5s ease;
+    }
+    .floating {
+        position: absolute;
+        font-size: 2.2rem;
+        animation: float 10s linear infinite;
+        opacity: 0.8;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh); }
+        100% { transform: translateY(-10vh); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Floating emojis -->
+<div class="floating" style="left:5%; animation-delay:0s;">🪢</div>
+<div class="floating" style="left:15%; animation-delay:2s;">💖</div>
+<div class="floating" style="left:25%; animation-delay:4s;">🎁</div>
+<div class="floating" style="left:35%; animation-delay:6s;">🍬</div>
+<div class="floating" style="left:45%; animation-delay:1s;">🌸</div>
+<div class="floating" style="left:55%; animation-delay:3s;">🥰</div>
+<div class="floating" style="left:65%; animation-delay:5s;">🎉</div>
+<div class="floating" style="left:75%; animation-delay:7s;">🍫</div>
+<div class="floating" style="left:85%; animation-delay:9s;">🪢</div>
+
+<h1 id="sisterName">Dear Sister ❤️</h1>
+<p>Happy Raksha Bandhan! 🎀</p>
+
+<button onclick="claimGift()">🎁 Claim Your Gift</button>
+<p id="giftMessage"></p>
+
+<script>
+// Get name from URL
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+if(name){
+    document.getElementById("sisterName").textContent = `Dear Sister ${name.charAt(0).toUpperCase() + name.slice(1)} ❤️`;
+}
+
+// Funny messages for the Claim Gift button
+const funnyMessages = [
+    "Abhi job nahi lagi 😜 wait karo...",
+    "Click karo ho sakta hai job mil jae 💖",
+    "Gift ka order Amazon se jaa raha hai 🚚",
+    "GIft meh ek hug milegi 😉",
+    " Gift baad mein 😆"
+];
+
+function claimGift(){
+    const msg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+    document.getElementById("giftMessage").textContent = msg;
+}
+</script>
+
+</body>
+</html>
