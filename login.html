@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raksha Bandhan Login</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #fff5f7, #ffe4e1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Floating Rakhi elements */
+    .rakhi {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: url('https://i.ibb.co/4PMYJH3/rakhi.png') no-repeat center/contain;
+        animation: float 6s ease-in-out infinite;
+        opacity: 0.8;
+    }
+    .rakhi:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .rakhi:nth-child(2) { top: 70%; left: 20%; animation-delay: 2s; }
+    .rakhi:nth-child(3) { top: 20%; right: 15%; animation-delay: 4s; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    /* Login box */
+    .login-box {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        text-align: center;
+        animation: fadeIn 1.2s ease-in-out;
+        z-index: 1;
+        width: 320px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        color: #ff4d6d;
+        margin-bottom: 10px;
+        font-size: 1.8em;
+    }
+
+    h3 {
+        color: #444;
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 90%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 2px solid #ff4d6d;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #ff6f91;
+        box-shadow: 0 0 8px rgba(255, 111, 145, 0.5);
+    }
+
+    button {
+        background: linear-gradient(90deg, #ff4d6d, #ff6f91);
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(90deg, #ff6f91, #ff4d6d);
+    }
+
+    #message {
+        margin-top: 15px;
+        color: red;
+        font-weight: bold;
+    }
+
+    /* Decorative rakhi band at bottom */
+    .band {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: url('https://i.ibb.co/1s0HkbD/rakhi-band.png') repeat-x center/contain;
+    }
+</style>
+</head>
+<body>
+    <!-- Floating rakhis -->
+    <div class="rakhi"></div>
+    <div class="rakhi"></div>
+    <div class="rakhi"></div>
+
+    <!-- Login Box -->
+    <div class="login-box">
+        <h1>💖 Raksha Bandhan Special 💖</h1>
+        <h3>Secret Code Question:</h3>
+        <p>What do I spend most of my time on?</p>
+        <input type="text" id="answer" placeholder="Enter your answer...">
+        <button onclick="checkAnswer()">Unlock Surprise</button>
+        <p id="message"></p>
+    </div>
+
+    <!-- Decorative band -->
+    <div class="band"></div>
+
+<script>
+function checkAnswer() {
+    const validAnswers = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
+    let ans = document.getElementById("answer").value.trim().toLowerCase();
+    
+    if (validAnswers.includes(ans)) {
+        window.location.href = "index.html";
+    } else {
+        document.getElementById("message").innerText = "❌ Wrong yeh bhi nahi pata LOL, it has a keyboard!";
+    }
+}
+</script>
+</body>
+</html>
