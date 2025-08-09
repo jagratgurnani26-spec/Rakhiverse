@@ -12,15 +12,30 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
+
+        /* Floating background elements */
+        .float {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: floatAnim 10s infinite linear;
+            opacity: 0.6;
+        }
+        @keyframes floatAnim {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+
         .login-box {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             text-align: center;
             width: 320px;
             animation: pop 0.5s ease-in-out;
+            z-index: 2;
         }
         @keyframes pop {
             from { transform: scale(0.8); opacity: 0; }
@@ -37,6 +52,7 @@
             border-radius: 10px;
             border: 1px solid #ccc;
             outline: none;
+            font-size: 14px;
         }
         button {
             background: #ff7e5f;
@@ -58,9 +74,20 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
+        #message {
+            font-weight: bold;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+
+<!-- Floating background emojis -->
+<div class="float" style="left:10%;">🪢</div>
+<div class="float" style="left:30%; animation-delay: 2s;">🎁</div>
+<div class="float" style="left:50%; animation-delay: 4s;">💖</div>
+<div class="float" style="left:70%; animation-delay: 6s;">🪢</div>
+<div class="float" style="left:90%; animation-delay: 1s;">🎉</div>
 
 <div class="login-box">
     <div class="emoji">🎁💖🪢</div>
@@ -77,6 +104,7 @@
 <script>
     const validCodes = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
     const validSisters = ["harshita", "saumya", "runjun", "rushali", "pihu", "suhana", "krishna", "yashu", "yashika", "purti"];
+    const specialSisters = ["harshita", "saumya", "runjun"]; // For special teasing
 
     function checkLogin() {
         const codeInput = document.getElementById("secretCode").value.trim().toLowerCase();
@@ -87,9 +115,19 @@
             msg.style.color = "green";
             msg.textContent = "✅ Access Granted! Happy Raksha Bandhan 🎉";
             setTimeout(() => {
-                window.location.href = "main.html"; // Change to your next page
+                window.location.href = "main.html"; 
             }, 1500);
-        } else {
+        } 
+        else if (validCodes.includes(codeInput) && !validSisters.includes(sisterInput)) {
+            if (specialSisters.includes(sisterInput)) {
+                msg.style.color = "orange";
+                msg.textContent = "😏 Arre meri special behen ka naam bhi bhool gaya?";
+            } else {
+                msg.style.color = "red";
+                msg.textContent = "❌ Access Denied! Galat naam likh diya.";
+            }
+        } 
+        else {
             msg.style.color = "red";
             msg.textContent = "❌ Wrong! Yeh bhi nahi pata LOL, it has a keyboard! ⌨️";
         }
