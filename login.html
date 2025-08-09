@@ -1,145 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Raksha Bandhan Login</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Raksha Bandhan — Secret Gate</title>
+
+<!-- Optional: Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #fff5f7, #ffe4e1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        overflow: hidden;
-    }
+  :root{
+    --pink1: #fff0f5;
+    --pink2: #ffd6e0;
+    --accent1: #ff4d6d;
+    --accent2: #ff8aa2;
+    --gold: #ffd166;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,210,220,0.9), transparent 15%),
+                radial-gradient(900px 500px at 90% 90%, rgba(255,236,190,0.9), transparent 15%),
+                linear-gradient(135deg, var(--pink1), var(--pink2));
+    overflow:hidden;
+  }
 
-    /* Floating Rakhi elements */
-    .rakhi {
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background: url('https://i.ibb.co/4PMYJH3/rakhi.png') no-repeat center/contain;
-        animation: float 6s ease-in-out infinite;
-        opacity: 0.8;
-    }
-    .rakhi:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-    .rakhi:nth-child(2) { top: 70%; left: 20%; animation-delay: 2s; }
-    .rakhi:nth-child(3) { top: 20%; right: 15%; animation-delay: 4s; }
+  /* floating emoji "3D" orbs */
+  .float-wrap{
+    position: absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  .orb{
+    position:absolute;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:72px;
+    height:72px;
+    border-radius:22px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    font-size:32px;
+    transition: transform 0.3s ease;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  }
+  /* positions */
+  .orb.o1{ left:8%; top:12%; transform-origin:center; animation:floaty 7s ease-in-out 0s infinite; }
+  .orb.o2{ right:6%; top:20%; animation:floaty 9s ease-in-out 1.2s infinite; }
+  .orb.o3{ left:18%; bottom:20%; animation:floaty 8s ease-in-out 0.6s infinite; }
+  .orb.o4{ right:14%; bottom:18%; animation:floaty 10s ease-in-out 0.9s infinite; }
+  .orb.o5{ left:50%; top:6%; transform: translateX(-50%); animation:floaty 11s ease-in-out 0.4s infinite; }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
+  @keyframes floaty{
+    0%{ transform: translateZ(0px) translateY(0px) rotateY(0deg);}
+    50%{ transform: translateZ(18px) translateY(-18px) rotateY(24deg);}
+    100%{ transform: translateZ(0px) translateY(0px) rotateY(0deg);}
+  }
 
-    /* Login box */
-    .login-box {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        text-align: center;
-        animation: fadeIn 1.2s ease-in-out;
-        z-index: 1;
-        width: 320px;
-    }
+  /* main container (glass card) */
+  .card{
+    width: min(420px, 92%);
+    padding: 28px;
+    border-radius:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.88));
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    text-align:center;
+    z-index:2;
+    border: 1px solid rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px) saturate(120%);
+    transform-origin:center;
+    animation:popIn 0.6s cubic-bezier(.2,.9,.2,1);
+  }
+  @keyframes popIn{
+    from{ opacity:0; transform: translateY(18px) scale(.98) }
+    to{ opacity:1; transform: translateY(0) scale(1) }
+  }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+  h1{
+    margin:0 0 8px;
+    color:var(--accent1);
+    font-size:1.5rem;
+    letter-spacing:0.6px;
+  }
+  p.lead{ margin:0 0 18px; color:#444; font-weight:500; opacity:0.9 }
 
-    h1 {
-        color: #ff4d6d;
-        margin-bottom: 10px;
-        font-size: 1.8em;
-    }
+  .rakhiframe{
+    width:120px;height:120px;margin:-8px auto 8px;
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    background: linear-gradient(135deg, #fff, rgba(255,209,220,0.6));
+    box-shadow: 0 8px 18px rgba(255,100,140,0.06);
+  }
+  .rakhiframe .icon{
+    font-size:44px;
+    transform: rotateY(12deg) translateZ(6px);
+    filter: drop-shadow(0 4px 8px rgba(255,130,160,0.12));
+  }
 
-    h3 {
-        color: #444;
-        margin-bottom: 15px;
-    }
+  /* input */
+  .input-row{ display:flex; gap:10px; align-items:center; justify-content:center; margin-top:8px; }
+  input[type="text"]{
+    width:100%;
+    padding:12px 14px;
+    border-radius:12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    font-size:15px;
+    outline:none;
+    transition: box-shadow .25s, border-color .25s, transform .12s;
+  }
+  input:focus{ box-shadow: 0 8px 20px rgba(255,120,150,0.12); border-color: var(--accent2); transform: translateY(-1px) }
 
-    input {
-        width: 90%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 2px solid #ff4d6d;
-        border-radius: 10px;
-        font-size: 15px;
-        transition: 0.3s;
-    }
+  .btn{
+    padding: 11px 18px;
+    background: linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:white;border:none;border-radius:12px;font-weight:600;cursor:pointer;
+    box-shadow: 0 8px 20px rgba(255,110,140,0.14); transition: transform .12s ease;
+  }
+  .btn:active{ transform: translateY(1px) scale(.995) }
 
-    input:focus {
-        outline: none;
-        border-color: #ff6f91;
-        box-shadow: 0 0 8px rgba(255, 111, 145, 0.5);
-    }
+  .message{
+    min-height:22px;
+    margin-top:14px;
+    font-weight:700;
+    color:#d33;
+    text-align:center;
+  }
 
-    button {
-        background: linear-gradient(90deg, #ff4d6d, #ff6f91);
-        border: none;
-        padding: 12px 25px;
-        border-radius: 10px;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+  /* shake on error */
+  .shake{
+    animation:shake 0.6s cubic-bezier(.36,.07,.19,.97);
+  }
+  @keyframes shake{
+    10%,90%{ transform:translateX(-1px) }
+    20%,80%{ transform:translateX(2px) }
+    30%,50%,70%{ transform:translateX(-4px) }
+    40%,60%{ transform:translateX(4px) }
+  }
 
-    button:hover {
-        transform: scale(1.05);
-        background: linear-gradient(90deg, #ff6f91, #ff4d6d);
-    }
+  /* footer ribbon */
+  .ribbon{
+    margin-top:18px;
+    font-size:0.92rem;
+    color:#6b6b6b;
+    display:flex; gap:8px; align-items:center; justify-content:center;
+  }
+  .byline{
+    background: linear-gradient(90deg, rgba(255,220,120,0.16), rgba(255,180,150,0.07));
+    padding:8px 12px;border-radius:999px;font-weight:600;color:#7a3a3a;
+  }
 
-    #message {
-        margin-top: 15px;
-        color: red;
-        font-weight: bold;
-    }
-
-    /* Decorative rakhi band at bottom */
-    .band {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        background: url('https://i.ibb.co/1s0HkbD/rakhi-band.png') repeat-x center/contain;
-    }
+  /* responsive tweaks */
+  @media (max-width:420px){
+    .rakhiframe{ width:100px;height:100px }
+    .orb{ width:60px; height:60px; font-size:28px }
+  }
 </style>
 </head>
 <body>
-    <!-- Floating rakhis -->
-    <div class="rakhi"></div>
-    <div class="rakhi"></div>
-    <div class="rakhi"></div>
 
-    <!-- Login Box -->
-    <div class="login-box">
-        <h1>💖 Raksha Bandhan Special 💖</h1>
-        <h3>Secret Code Question:</h3>
-        <p>What do I spend most of my time on?</p>
-        <input type="text" id="answer" placeholder="Enter your answer...">
-        <button onclick="checkAnswer()">Unlock Surprise</button>
-        <p id="message"></p>
+  <!-- floating 3D-ish emojis -->
+  <div class="float-wrap" aria-hidden="true">
+    <div class="orb o1">🪢</div>
+    <div class="orb o2">🎁</div>
+    <div class="orb o3">💖</div>
+    <div class="orb o4">🎉</div>
+    <div class="orb o5">🥳</div>
+  </div>
+
+  <!-- main card -->
+  <div class="card" role="main" aria-labelledby="title">
+    <div class="rakhiframe" aria-hidden="true">
+      <div class="icon">🎀</div>
     </div>
 
-    <!-- Decorative band -->
-    <div class="band"></div>
+    <h1 id="title">Raksha Bandhan — Secret Gate</h1>
+    <p class="lead">Answer the secret question to unlock your surprise. PS: Be honest 😉</p>
+
+    <div style="padding:0 6px;">
+      <div style="display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:10px;">
+        <input id="nameInput" type="text" placeholder="Your name (optional)" aria-label="Your name">
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;justify-content:center;">
+        <input id="answer" type="text" placeholder="What do I spend most of my time on?" aria-label="Secret answer">
+        <button class="btn" id="submitBtn">Unlock</button>
+      </div>
+
+      <div class="message" id="msg" role="status"></div>
+
+      <div class="ribbon">
+        <span class="byline">Made by your jobless coder bhai — Jai 😎</span>
+      </div>
+    </div>
+  </div>
 
 <script>
-function checkAnswer() {
-    const validAnswers = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
-    let ans = document.getElementById("answer").value.trim().toLowerCase();
-    
-    if (validAnswers.includes(ans)) {
-        window.location.href = "index.html";
-    } else {
-        document.getElementById("message").innerText = "❌ Wrong yeh bhi nahi pata LOL, it has a keyboard!";
+  (function(){
+    const valid = ["pc","computer","gaming","laptop","playstation","ps4","ps5"];
+    const submit = document.getElementById('submitBtn');
+    const ansEl = document.getElementById('answer');
+    const nameEl = document.getElementById('nameInput');
+    const msg = document.getElementById('msg');
+    const card = document.querySelector('.card');
+
+    // if someone already logged in previously — skip and redirect
+    try{
+      const saved = localStorage.getItem('raksha_user_name');
+      if(saved){
+        msg.style.color = '#2a8a2a';
+        msg.textContent = `Welcome back, ${saved}! Redirecting...`;
+        setTimeout(()=> window.location.href = 'index.html', 1200);
+        return;
+      }
+    }catch(e){ /* ignore localStorage errors */ }
+
+    function showError(text){
+      msg.style.color = '#d33';
+      msg.textContent = text;
+      card.classList.remove('shake');
+      // trigger reflow for animation restart
+      void card.offsetWidth;
+      card.classList.add('shake');
     }
-}
+
+    function showSuccessAndGo(name){
+      msg.style.color = '#198754';
+      msg.textContent = '✅ Access Granted — Redirecting...';
+      // store name if provided
+      try{
+        if(name && name.trim()) localStorage.setItem('raksha_user_name', name.trim());
+      }catch(e){}
+      setTimeout(()=> window.location.href = 'index.html', 1200);
+    }
+
+    submit.addEventListener('click', () => {
+      const val = (ansEl.value || '').trim().toLowerCase();
+      const nm = (nameEl.value || '').trim();
+      if(!val){
+        showError('Please type something — try "pc" 😉');
+        return;
+      }
+      if(valid.includes(val)){
+        showSuccessAndGo(nm);
+      }else{
+        showError('❌ Wrong! Yeh bhi nahi pata LOL, it has a keyboard 🎹');
+      }
+    });
+
+    // allow Enter key to submit
+    [ansEl, nameEl].forEach(el=>{
+      el.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter') submit.click();
+      });
+    });
+
+  })();
 </script>
 </body>
 </html>
+
