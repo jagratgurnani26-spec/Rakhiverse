@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raksha Bandhan Special</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
     body {
         margin: 0;
         font-family: 'Segoe UI', sans-serif;
@@ -17,6 +20,7 @@
         align-items: center;
         flex-direction: column;
         overflow: hidden;
+        text-align: center;
     }
     @keyframes bgMove {
         0% { background-position: left top; }
@@ -28,10 +32,28 @@
         text-shadow: 3px 3px 10px rgba(0,0,0,0.25);
         animation: fadeIn 1.5s ease-in-out;
     }
-    p {
-        font-size: 1.4rem;
-        margin-bottom: 20px;
+    /* Happy Raksha Bandhan heading */
+    .festival-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3rem;
+        color: #fff;
+        background: linear-gradient(90deg, #ff4d94, #ff9900);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        margin-top: 5px;
+        animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff99c8, 0 0 20px #ff66a3; }
+        to { text-shadow: 0 0 20px #ffa07a, 0 0 40px #ff4d94; }
+    }
+    /* Heartfelt short message */
+    .heartfelt {
+        font-family: 'Pacifico', cursive;
+        font-size: 1.2rem;
         color: #444;
+        margin-bottom: 20px;
         text-shadow: 1px 1px 4px rgba(255,255,255,0.6);
     }
     @keyframes fadeIn {
@@ -88,7 +110,8 @@
 <div class="floating" style="left:85%; animation-delay:9s;">🪢</div>
 
 <h1 id="sisterName">Dear Sister ❤️</h1>
-<p>Happy Raksha Bandhan! 🎀</p>
+<h2 class="festival-title">Happy Raksha Bandhan 🎀</h2>
+<p class="heartfelt">No matter the distance, our bond is tied with love, trust, and endless memories 💞</p>
 
 <button onclick="claimGift()">🎁 Claim Your Gift</button>
 <p id="giftMessage"></p>
@@ -119,4 +142,5 @@ function claimGift(){
 
 </body>
 </html>
+
 
